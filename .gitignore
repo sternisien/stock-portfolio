@@ -1,0 +1,47 @@
+# IDE-specific files
+.idea/
+*.iws
+*.iml
+*.ipr
+out/
+# User-specific files
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+# Java specific
+*.class
+*.jar
+*.war
+*.ear
+*.JAR
+*.WAR
+*.EAR
+*.java~
+*.log
+hs_err_pid*
+replay_pid*
+*.ec
+*.stackdump
+*.dump
+# Maven specific
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+# Gradle specific
+.gradle/
+build/
+!gradle-wrapper.jar
+# gradle wrapper files should be included
+# Others
+bin/
+.gen/
+generated/
+release/
