@@ -6,3 +6,16 @@ kafka:
   bootstrap-server:
     host: localhost
     port: 9092
+
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/portfolio
+    username: root
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+
+  jpa: # Affiche les requêtes SQL générées
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect # Dialecte spécifique à PostgreSQL
