@@ -1,4 +1,4 @@
-package stock.unit_test;
+package org.example.stock.unit_test;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -34,16 +34,13 @@ public class GetPortfolioServiceTest {
 
     RuntimeException err =
         Assertions.assertThrows(
-            RuntimeException.class,
-            () -> {
-              portfolioUserService.getStocksInUserPortfolio(null);
-            });
+            RuntimeException.class, () -> portfolioUserService.getStocksInUserPortfolio(null));
 
     Assertions.assertEquals(UserMessageException.USER_ID_NOT_PROVIDED, err.getMessage());
   }
 
   @Test
-  void get_user_portfolio_no_stock_for_user() {
+  void get_user_portfolio_stocks() {
     Stock appleStock = new Stock(1L, "AAPL", 10, 115, LAST_UPDATED, 1L);
     Stock teslaStock = new Stock(1L, "TSLA", 15, 300, LAST_UPDATED, 1L);
 
@@ -60,10 +57,21 @@ public class GetPortfolioServiceTest {
     Assertions.assertAll(
         () -> Assertions.assertEquals("AAPL", appleStockDto.symbol()),
         () -> Assertions.assertEquals(115d, appleStockDto.price()),
-        () -> Assertions.assertEquals(10, appleStockDto.quantite()),
+        () -> Assertions.assertEquals(10, appleStockDto.quantity()),
         () -> Assertions.assertEquals("TSLA", teslaStockDto.symbol()),
         () -> Assertions.assertEquals(300d, teslaStockDto.price()),
-        () -> Assertions.assertEquals(15, teslaStockDto.quantite()));
+        () -> Assertions.assertEquals(15, teslaStockDto.quantity()));
+  }
+
+  @Test
+  void get_user_portfolio_no_stocks() {
+    Stock appleStock = new Stock(1L, "AAPL", 10, 115, LAST_UPDATED, 1L);
+    Stock teslaStock = new Stock(1L, "TSLA", 15, 300, LAST_UPDATED, 1L);
+
+    Mockito.when(stockRetreiverAdapter.getStocksPortfolioByUserId(1L)).thenReturn(List.of());
+
+    List<StockPortfolioDto> resultat = portfolioUserService.getStocksInUserPortfolio(1L);
+    Assertions.assertEquals(0, resultat.size());
   }
 
   @Test
@@ -72,9 +80,7 @@ public class GetPortfolioServiceTest {
     RuntimeException err =
         Assertions.assertThrows(
             RuntimeException.class,
-            () -> {
-              portfolioUserService.getStockBySymbolInUserPortfolio("AAPL", null);
-            });
+            () -> portfolioUserService.getStockBySymbolInUserPortfolio("AAPL", null));
 
     Assertions.assertEquals(UserMessageException.USER_ID_NOT_PROVIDED, err.getMessage());
   }
@@ -113,6 +119,6 @@ public class GetPortfolioServiceTest {
     Assertions.assertAll(
         () -> Assertions.assertEquals("AAPL", appleStockDto.symbol()),
         () -> Assertions.assertEquals(115d, appleStockDto.price()),
-        () -> Assertions.assertEquals(10, appleStockDto.quantite()));
+        () -> Assertions.assertEquals(10, appleStockDto.quantity()));
   }
 }

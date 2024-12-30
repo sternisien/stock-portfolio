@@ -4,6 +4,7 @@ import org.example.infrastructure.controller_advice.common.ApiError;
 import org.example.infrastructure.exception.BadRequestException;
 import org.example.infrastructure.exception.ResourceNotFoundException;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
@@ -11,24 +12,29 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 public class RestExceptionHandler {
 
   @ExceptionHandler({ResourceNotFoundException.class})
-  public ApiError resourceNotFoundException(ResourceNotFoundException ex) {
+  public ResponseEntity<ApiError> resourceNotFoundException(ResourceNotFoundException ex) {
+    HttpStatus status = HttpStatus.NOT_FOUND;
 
-    return new ApiError(
-        ex.getMessage(),
-        HttpStatus.NOT_FOUND.value(),
-        HttpStatus.NOT_FOUND.name(),
-        ex.getResourceType(),
-        ex.getLocalDateTime());
+    return new ResponseEntity<>(
+        new ApiError(
+            ex.getMessage(),
+            status.value(),
+            status.name(),
+            ex.getResourceType(),
+            ex.getLocalDateTime()),
+        status);
   }
 
   @ExceptionHandler({BadRequestException.class})
-  public ApiError badRequestException(BadRequestException ex) {
-
-    return new ApiError(
-        ex.getMessage(),
-        HttpStatus.BAD_REQUEST.value(),
-        HttpStatus.BAD_REQUEST.name(),
-        ex.getResourceType(),
-        ex.getLocalDateTime());
+  public ResponseEntity<ApiError> badRequestException(BadRequestException ex) {
+    HttpStatus status = HttpStatus.BAD_REQUEST;
+    return new ResponseEntity<>(
+        new ApiError(
+            ex.getMessage(),
+            status.value(),
+            status.name(),
+            ex.getResourceType(),
+            ex.getLocalDateTime()),
+        status);
   }
 }

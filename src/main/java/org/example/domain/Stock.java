@@ -1,6 +1,5 @@
 package org.example.domain;
 
-import java.math.BigInteger;
 import java.time.LocalDateTime;
 
 public class Stock {
@@ -9,7 +8,7 @@ public class Stock {
 
   private String symbol;
 
-  private int quantite;
+  private int quantity;
 
   private double price;
 
@@ -19,10 +18,10 @@ public class Stock {
   public Stock() {}
 
   public Stock(
-      Long id, String symbol, int quantite, double price, LocalDateTime lastUpdated, Long userId) {
+      Long id, String symbol, int quantity, double price, LocalDateTime lastUpdated, Long userId) {
     this.id = id;
     this.symbol = symbol;
-    this.quantite = quantite;
+    this.quantity = quantity;
     this.price = price;
     this.lastUpdated = lastUpdated;
     this.userId = userId;
@@ -44,12 +43,12 @@ public class Stock {
     this.symbol = symbol;
   }
 
-  public int getQuantite() {
-    return quantite;
+  public int getQuantity() {
+    return quantity;
   }
 
-  public void setQuantite(int quantite) {
-    this.quantite = quantite;
+  public void setQuantity(int quantity) {
+    this.quantity = quantity;
   }
 
   public double getPrice() {
