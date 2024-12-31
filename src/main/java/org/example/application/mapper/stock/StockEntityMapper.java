@@ -1,6 +1,6 @@
 package org.example.application.mapper.stock;
 
-import org.example.adapter.out.entity.StockEntity;
+import org.example.adapter.output.entity.StockEntity;
 import org.example.domain.Stock;
 import org.mapstruct.Mapper;
 
