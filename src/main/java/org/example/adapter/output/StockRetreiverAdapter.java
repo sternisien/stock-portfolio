@@ -3,7 +3,7 @@ package org.example.adapter.output;
 import java.util.List;
 import org.example.adapter.output.repository.StockRepository;
 import org.example.application.mapper.stock.StockEntityMapper;
-import org.example.application.port.out.GetResourceStock;
+import org.example.application.port.output.GetResourceStock;
 import org.example.domain.Stock;
 import org.example.infrastructure.exception.ResourceNotFoundException;
 import org.springframework.stereotype.Component;

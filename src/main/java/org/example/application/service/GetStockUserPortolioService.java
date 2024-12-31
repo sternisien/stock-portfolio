@@ -5,7 +5,7 @@ import java.util.Objects;
 import org.example.application.dto.StockPortfolioDto;
 import org.example.application.mapper.stock.StockDomainMapper;
 import org.example.application.port.in.GetStockUserPortfolioUseCase;
-import org.example.application.port.out.GetResourceStock;
+import org.example.application.port.output.GetResourceStock;
 import org.example.domain.Stock;
 import org.example.infrastructure.exception.BadRequestException;
 import org.example.infrastructure.exception.message.StockMessageException;
