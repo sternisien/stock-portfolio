@@ -1,6 +1,11 @@
-INSERT INTO public.stock (user_id, symbol, quantity, price, last_updated)
+INSERT INTO public.portfolio(id, user_id, available_funds, last_updated)
 VALUES
-(1, 'AAPL', 50, 150.25, '2024-12-27 10:00:00'),
-(1, 'TSLA', 20, 700.00, '2024-12-27 10:15:00'),
-(1, 'GOOGL', 10, 2800.50, '2024-12-27 10:05:00');
+(1, 1, 2000, '2024-12-27 10:00:00');
+
+
+INSERT INTO public.stock (symbol, quantity, quantity_lock, price, last_updated, portfolio_id)
+VALUES
+('AAPL', 50, 0, 150.25, '2024-12-27 10:00:00', 1),
+('TSLA', 20, 0, 700.00, '2024-12-27 10:15:00', 1),
+('GOOGL', 10, 0, 2800.50, '2024-12-27 10:05:00', 1);
 
