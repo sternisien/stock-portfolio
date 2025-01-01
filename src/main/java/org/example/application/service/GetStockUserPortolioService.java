@@ -7,10 +7,11 @@ import org.example.application.mapper.stock.StockDomainMapper;
 import org.example.application.port.in.GetStockUserPortfolioUseCase;
 import org.example.application.port.output.GetResourceStock;
 import org.example.domain.Stock;
-import org.example.infrastructure.exception.BadRequestException;
+import org.example.infrastructure.exception.DataValidationException;
 import org.example.infrastructure.exception.message.StockMessageException;
 import org.example.infrastructure.exception.message.UserMessageException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 @Service
@@ -27,9 +28,10 @@ public class GetStockUserPortolioService implements GetStockUserPortfolioUseCase
   }
 
   @Override
+  @Transactional(readOnly = true)
   public List<StockPortfolioDto> getStocksInUserPortfolio(Long userId) {
     if (Objects.isNull(userId)) {
-      throw new BadRequestException(
+      throw new DataValidationException(
           UserMessageException.USER_ID_NOT_PROVIDED, Stock.class.getSimpleName());
     }
 
@@ -39,14 +41,15 @@ public class GetStockUserPortolioService implements GetStockUserPortfolioUseCase
   }
 
   @Override
+  @Transactional(readOnly = true)
   public StockPortfolioDto getStockBySymbolInUserPortfolio(String stockSymbol, Long userId) {
     if (Objects.isNull(userId)) {
-      throw new BadRequestException(
+      throw new DataValidationException(
           UserMessageException.USER_ID_NOT_PROVIDED, Stock.class.getSimpleName());
     }
 
     if (!StringUtils.hasText(stockSymbol)) {
-      throw new BadRequestException(
+      throw new DataValidationException(
           StockMessageException.STOCK_SYMBOL_NOT_PROVIDED, Stock.class.getSimpleName());
     }
 

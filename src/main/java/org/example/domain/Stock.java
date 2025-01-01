@@ -13,18 +13,24 @@ public class Stock {
   private double price;
 
   private LocalDateTime lastUpdated;
-  private Long userId;
+
+  private Long portfolioId;
 
   public Stock() {}
 
   public Stock(
-      Long id, String symbol, int quantity, double price, LocalDateTime lastUpdated, Long userId) {
+      Long id,
+      String symbol,
+      int quantity,
+      double price,
+      LocalDateTime lastUpdated,
+      Long portfolioId) {
     this.id = id;
     this.symbol = symbol;
     this.quantity = quantity;
     this.price = price;
     this.lastUpdated = lastUpdated;
-    this.userId = userId;
+    this.portfolioId = portfolioId;
   }
 
   public Long getId() {
@@ -67,11 +73,11 @@ public class Stock {
     this.lastUpdated = lastUpdated;
   }
 
-  public Long getUserId() {
-    return userId;
+  public Long getPortfolioId() {
+    return portfolioId;
   }
 
-  public void setUserId(Long userId) {
-    this.userId = userId;
+  public void setPortfolioId(Long portfolioId) {
+    this.portfolioId = portfolioId;
   }
 }

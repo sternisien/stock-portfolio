@@ -24,7 +24,7 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 @Sql(
     value = "classpath:sql/stock/stock_jdd.sql",
     executionPhase = Sql.ExecutionPhase.BEFORE_TEST_CLASS)
-public class PortfolioControllerTest {
+public class StockPortfolioControllerTest {
 
   @Autowired @Container private PostgreSQLContainer<?> postgreSQLContainer;
   @Autowired private MockMvc mockMvc;

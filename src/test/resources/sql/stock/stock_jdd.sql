@@ -1,6 +1,6 @@
-INSERT INTO public.portfolio(id, user_id, available_funds, last_updated)
+INSERT INTO public.portfolio(id, user_id, available_funds, funds_locked, last_updated)
 VALUES
-(1, 1, 2000, '2024-12-27 10:00:00');
+(1, 1, 2000, 0, '2024-12-27 10:00:00');
 
 
 INSERT INTO public.stock (symbol, quantity, quantity_lock, price, last_updated, portfolio_id)

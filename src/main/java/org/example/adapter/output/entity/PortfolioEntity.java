@@ -13,13 +13,15 @@ import java.util.List;
 
 @Entity
 @Table(name = "portfolio")
-public class Portfolio {
+public class PortfolioEntity {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
   private double availableFunds;
+
+  private double fundsLocked;
 
   private LocalDateTime lastUpdated;
 
@@ -29,11 +31,13 @@ public class Portfolio {
   @JoinColumn(name = "portfolio_id")
   private List<StockEntity> stockEntities = new ArrayList<>();
 
-  public Portfolio() {}
+  public PortfolioEntity() {}
 
-  public Portfolio(Long id, double availableFunds, LocalDateTime lastUpdated, Long userId) {
+  public PortfolioEntity(
+      Long id, double availableFunds, double fundsLocked, LocalDateTime lastUpdated, Long userId) {
     this.id = id;
     this.availableFunds = availableFunds;
+    this.fundsLocked = fundsLocked;
     this.lastUpdated = lastUpdated;
     this.userId = userId;
   }
@@ -76,5 +80,13 @@ public class Portfolio {
 
   public void setStockEntities(List<StockEntity> stockEntities) {
     this.stockEntities = stockEntities;
+  }
+
+  public double getFundsLocked() {
+    return fundsLocked;
+  }
+
+  public void setFundsLocked(double fundsLocked) {
+    this.fundsLocked = fundsLocked;
   }
 }

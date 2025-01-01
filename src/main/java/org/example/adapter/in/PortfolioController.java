@@ -1,8 +1,8 @@
 package org.example.adapter.in;
 
-import java.util.List;
-import org.example.application.dto.StockPortfolioDto;
-import org.example.application.port.in.GetStockUserPortfolioUseCase;
+import org.example.application.dto.BalancePortfolioDto;
+import org.example.application.port.in.GetDataAssetPortfolioUseCase;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,20 +12,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/portfolios")
 public class PortfolioController {
 
-  private final GetStockUserPortfolioUseCase portfolioUserUseCase;
+  private final GetDataAssetPortfolioUseCase assetPortfolioUseCase;
 
-  public PortfolioController(GetStockUserPortfolioUseCase portfolioUserUseCase) {
-    this.portfolioUserUseCase = portfolioUserUseCase;
+  public PortfolioController(GetDataAssetPortfolioUseCase assetPortfolioUseCase) {
+    this.assetPortfolioUseCase = assetPortfolioUseCase;
   }
 
-  @GetMapping("/{userId}/stocks")
-  public List<StockPortfolioDto> getStocksPortfolioForUser(@PathVariable Long userId) {
-    return portfolioUserUseCase.getStocksInUserPortfolio(userId);
-  }
-
-  @GetMapping("/{userId}/stocks/{symbol}")
-  public StockPortfolioDto getStockBySymbolForUser(
-      @PathVariable Long userId, @PathVariable String symbol) {
-    return portfolioUserUseCase.getStockBySymbolInUserPortfolio(symbol, userId);
+  @GetMapping("/{userId}/balance")
+  public ResponseEntity<BalancePortfolioDto> getBalanceUserPortfolio(@PathVariable Long userId) {
+    return ResponseEntity.ok(assetPortfolioUseCase.getBalanceUserPortfolio(userId));
   }
 }

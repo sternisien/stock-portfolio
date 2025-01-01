@@ -29,7 +29,7 @@ public class StockEntity {
 
   @ManyToOne
   @JoinColumn(name = "portfolio_id")
-  private Portfolio portfolio;
+  private PortfolioEntity portfolio;
 
   public StockEntity() {}
 
@@ -40,14 +40,14 @@ public class StockEntity {
       int quantityLock,
       double price,
       LocalDateTime lastUpdated,
-      Portfolio portfolio) {
+      PortfolioEntity portfolioEntity) {
     this.id = id;
     this.symbol = symbol;
     this.quantity = quantity;
     this.quantityLock = quantityLock;
     this.price = price;
     this.lastUpdated = lastUpdated;
-    this.portfolio = portfolio;
+    this.portfolio = portfolioEntity;
   }
 
   public Long getId() {
@@ -102,11 +102,11 @@ public class StockEntity {
     this.symbol = symbol;
   }
 
-  public Portfolio getPortfolio() {
+  public PortfolioEntity getPortfolio() {
     return portfolio;
   }
 
-  public void setPortfolio(Portfolio portfolio) {
-    this.portfolio = portfolio;
+  public void setPortfolio(PortfolioEntity portfolioEntity) {
+    this.portfolio = portfolioEntity;
   }
 }

@@ -3,6 +3,7 @@ CREATE TABLE IF NOT EXISTS public.portfolio
     id integer NOT NULL  GENERATED ALWAYS AS IDENTITY ,
     user_id integer NOT NULL,
     available_funds numeric(15,2) NOT NULL DEFAULT 0.00,
+    funds_locked numeric(15,2) NOT NULL DEFAULT 0.00,
     last_updated timestamp without time zone DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT portfolio_pkey1 PRIMARY KEY (id)
 );
