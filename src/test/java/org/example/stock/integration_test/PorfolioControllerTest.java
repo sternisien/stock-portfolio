@@ -22,8 +22,11 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 @Testcontainers
 @Import(DockerContainerConfiguration.class)
 @Sql(
-    value = "classpath:sql/stock/stock_jdd.sql",
+    value = {"classpath:sql/stock/stock_jdd.sql"},
     executionPhase = Sql.ExecutionPhase.BEFORE_TEST_CLASS)
+@Sql(
+    value = {"classpath:sql/stock/common/clean_db.sql"},
+    executionPhase = Sql.ExecutionPhase.AFTER_TEST_CLASS)
 public class PorfolioControllerTest {
 
   @Container @Autowired private PostgreSQLContainer<?> postgreSQLContainer;

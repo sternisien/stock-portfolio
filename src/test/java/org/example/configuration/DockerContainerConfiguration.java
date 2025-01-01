@@ -13,6 +13,7 @@ public class DockerContainerConfiguration {
         .withDatabaseName("portfolio")
         .withUsername("test")
         .withPassword("test")
-        .withInitScripts("sql/stock/init_db.sql");
+        .withInitScripts("sql/stock/init_db.sql")
+        .withReuse(false);
   }
 }
